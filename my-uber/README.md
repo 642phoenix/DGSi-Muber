@@ -20,6 +20,7 @@ src/
 │   ├── HomePage.js              // Main page with options to request/offer a ride
 │   ├── RequestRidePage.js       // Page for requesting a ride
 │   └── OfferRidePage.js         // Page for offering a ride
+│   └── SignUpPage.js            // Page for user sign-up and id verify
 ├── utils/
 │   └── api.js                   // Placeholder for API requests
 ├── App.js                       // Main app component with routing
