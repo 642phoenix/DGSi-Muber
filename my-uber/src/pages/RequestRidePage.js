@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import { submitRideRequest } from '../utils/api';
+// eslint-disable-next-line no-unused-vars
+import { submitRideRequest, submitRideOffer } from '../utils/api';
+
 
 /**
  * RequestRidePage component enables users to input details for requesting a ride.

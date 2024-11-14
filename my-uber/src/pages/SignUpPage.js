@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { registerUser, uploadIdentityFiles } from '../utils/api';
 
 /**
  * SignUpPage component allows users to sign up with email, password, and upload identity verification files.
@@ -12,34 +13,30 @@ function SignUpPage() {
   const [selfie, setSelfie] = useState(null);
   const [inePhoto, setInePhoto] = useState(null);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const formData = new FormData();
-    formData.append('email', email);
-    formData.append('password', password);
-    formData.append('name', name);
-    formData.append('phone', phone);
-    formData.append('selfie', selfie);
-    formData.append('inePhoto', inePhoto);
+    try {
+      // Call the registerUser API function with basic user details
+      await registerUser({ email, password, name, phone });
 
-    // Simulate sending data to backend or console log the form data for testing
-    console.log('Sign-Up Form Data:', {
-      email,
-      password,
-      name,
-      phone,
-      selfie,
-      inePhoto,
-    });
+      // Call the uploadIdentityFiles API function with the uploaded files
+      if (selfie && inePhoto) {
+        await uploadIdentityFiles(selfie, inePhoto);
+      }
 
-    // Clear form fields after submission (optional)
-    setEmail('');
-    setPassword('');
-    setName('');
-    setPhone('');
-    setSelfie(null);
-    setInePhoto(null);
+      console.log('User registration and file upload successful');
+      
+      // Clear form fields after successful submission
+      setEmail('');
+      setPassword('');
+      setName('');
+      setPhone('');
+      setSelfie(null);
+      setInePhoto(null);
+    } catch (error) {
+      console.error('Error during sign-up process:', error);
+    }
   };
 
   return (
@@ -55,7 +52,7 @@ function SignUpPage() {
             placeholder="Enter full name"
             required
           />
-        </label>
+        </label><br />
         <label>
           Email:
           <input
@@ -65,7 +62,7 @@ function SignUpPage() {
             placeholder="Enter email"
             required
           />
-        </label>
+        </label><br />
         <label>
           Phone Number:
           <input
@@ -75,7 +72,7 @@ function SignUpPage() {
             placeholder="Enter phone number"
             required
           />
-        </label>
+        </label><br />
         <label>
           Password:
           <input
@@ -85,7 +82,7 @@ function SignUpPage() {
             placeholder="Create password"
             required
           />
-        </label>
+        </label><br />
         <label>
           Selfie (for identity verification):
           <input
@@ -94,7 +91,7 @@ function SignUpPage() {
             onChange={(e) => setSelfie(e.target.files[0])}
             required
           />
-        </label>
+        </label><br />
         <label>
           INE Photo (for identity verification):
           <input
@@ -103,7 +100,7 @@ function SignUpPage() {
             onChange={(e) => setInePhoto(e.target.files[0])}
             required
           />
-        </label>
+        </label><br />
         <button type="submit" className="form__submit-button">Sign Up</button>
       </form>
     </div>
@@ -111,4 +108,5 @@ function SignUpPage() {
 }
 
 export default SignUpPage;
+
 

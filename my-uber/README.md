@@ -7,21 +7,26 @@ pages/: For pages that represent different screens/views.
 App.js: Our main component where routes and navigation will be configured.
 
 src/
+├── App.js                       // Main app component with routing
+├── App.css                      // Global app styling
+├── index.js                     // Entry point
 ├── components/
 │   ├── layout/
-│   │   ├── Header.js
+│   │   ├── Header.js            // Header with navigation links
 │   │   ├── Footer.js
-│   │   └── PageLayout.js        // Layout wrapper with header/footer
-│   └── rides/
-│       ├── RideRequestForm.js   // Form for requesting a ride
-│       ├── RideOfferForm.js     // Form for offering a ride
-│       └── RideList.js          // Display list of available rides
+│   │   └── PageLayout.js        
+│   ├── rides/
+│   │   ├── RideRequestForm.js   
+│   │   ├── RideOfferForm.js     
+│   │   └── RideList.js          
+│   ├── ProtectedRoute.js        // Protect routes for authenticated users
+│   └── SignOutButton.js         // Sign-out button component
 ├── pages/
-│   ├── HomePage.js              // Main page with options to request/offer a ride
-│   ├── RequestRidePage.js       // Page for requesting a ride
-│   └── OfferRidePage.js         // Page for offering a ride
-│   └── SignUpPage.js            // Page for user sign-up and id verify
-├── utils/
-│   └── api.js                   // Placeholder for API requests
-├── App.js                       // Main app component with routing
-└── index.js                     // Entry point
+│   ├── HomePage.js              
+│   ├── RequestRidePage.js       
+│   ├── OfferRidePage.js         
+│   ├── SignUpPage.js            
+│   ├── LoginPage.js             // Login page for user authentication
+│   ├── ProfilePage.js           // User profile page
+└── utils/
+    └── api.js                   // API utility for user actions (login, registration, profile fetch)
